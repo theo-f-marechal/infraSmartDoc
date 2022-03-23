@@ -15,10 +15,10 @@ libraryDependencies += "org.apache.spark" %% "spark-core" % "3.2.1"
 libraryDependencies += "org.apache.kafka" %% "kafka" % "3.1.0"
 
 // https://mvnrepository.com/artifact/org.apache.spark/spark-sql
-libraryDependencies += "org.apache.spark" %% "spark-sql" % "3.2.1" % "provided"
+libraryDependencies += "org.apache.spark" %% "spark-sql" % "3.2.1"
 
 // https://mvnrepository.com/artifact/org.apache.spark/spark-sql-kafka-0-10
-libraryDependencies += "org.apache.spark" %% "spark-sql-kafka-0-10" % "3.2.1" % Test
+libraryDependencies += "org.apache.spark" %% "spark-sql-kafka-0-10" % "3.2.1"
 
 // https://mvnrepository.com/artifact/org.apache.spark/spark-mllib
-libraryDependencies += "org.apache.spark" %% "spark-mllib" % "3.2.1" % "provided"
+libraryDependencies += "org.apache.spark" %% "spark-mllib" % "3.2.1"

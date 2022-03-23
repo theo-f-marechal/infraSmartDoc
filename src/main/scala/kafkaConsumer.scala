@@ -42,7 +42,7 @@ class kafkaConsumer(val topic: String) extends Logging {
 
   def readAll(offset_inferior : BigInt): Array[String] = {
     val spark = SparkSession
-      .builder
+      .builder()
       .appName("StructuredNetworkWordCount")
       .config("spark.master", "local")
       .getOrCreate()
@@ -75,9 +75,12 @@ object kafkaConsumer {
     val streamReader = new kafkaConsumer( "test")
     streamReader.run()
   }
-  def ConsumeAll(): Unit = {
+  def consumeAll(): Unit = {
     val streamReader = new kafkaConsumer("test")
+    println("start")
     streamReader.readAll(0).foreach(elt => println(elt))
+    println("end")
+
   }
 
 }
