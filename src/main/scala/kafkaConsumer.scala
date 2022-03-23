@@ -1,5 +1,6 @@
 import kafka.utils.Logging
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord, KafkaConsumer}
+import org.apache.spark.sql.SparkSession
 
 import java.time.Duration
 import java.util.{Collections, Properties}
@@ -38,6 +39,35 @@ class kafkaConsumer(val topic: String) extends Logging {
     run_iterateIterator(record.iterator)
     run()
   }
+
+  def readAll(offset_inferior : BigInt): Array[String] = {
+    val spark = SparkSession
+      .builder
+      .appName("StructuredNetworkWordCount")
+      .config("spark.master", "local")
+      .getOrCreate()
+
+    import spark.implicits._
+
+    val df = spark
+      .read
+      .format("kafka")
+      .option("kafka.bootstrap.servers", "localhost:9092")
+      .option("subscribe", "test")
+      .option("startingOffsets", s"""{"test":{"0":$offset_inferior}}""")
+      .load()
+    df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+      .as[(String, String)]
+
+    if (!df.isEmpty) {
+      val array = df.select($"value".as[String]).collectAsList().toArray()
+      spark.close()
+      array.map(x => x.toString)
+    }else{
+      Array()
+    }
+  }
+
 }
 
 object kafkaConsumer {
@@ -45,4 +75,9 @@ object kafkaConsumer {
     val streamReader = new kafkaConsumer( "test")
     streamReader.run()
   }
+  def ConsumeAll(): Unit = {
+    val streamReader = new kafkaConsumer("test")
+    streamReader.readAll(0).foreach(elt => println(elt))
+  }
+
 }
