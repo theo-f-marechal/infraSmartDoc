@@ -1,5 +1,7 @@
 object Main{
   def main(args: Array[String]): Unit = {
-    print("main")
+    kafkaProducer.sendReport("test",1,"lol")
+    println("main")
+    kafkaConsumer.kafkaConsumer()
   }
 }

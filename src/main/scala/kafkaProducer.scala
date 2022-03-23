@@ -8,8 +8,8 @@ object kafkaProducer{
    * @param key the key of the message
    * @param message the message to be sent
    */
-  def sendReport(key : Int, message : String): Unit = {
-    val topic: String = "images"
+  def sendReport(topicarg : String = "images", key : Int, message : String): Unit = {
+    val topic: String = topicarg
     val brokers: String = "localhost:9092"
     val props = new Properties()
     props.put("bootstrap.servers", brokers)
