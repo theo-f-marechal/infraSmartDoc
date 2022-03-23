@@ -1,10 +1,10 @@
 import kafka.utils.Logging
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord, KafkaConsumer}
 import org.apache.spark.sql.SparkSession
-
 import java.time.Duration
 import java.util.{Collections, Properties}
-import scala.collection.JavaConverters._
+//import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 class kafkaConsumer(val topic: String) extends Logging {
   val props: Properties = createConsumerConfig()
