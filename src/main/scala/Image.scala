@@ -17,8 +17,9 @@ object Image{
     val files = getListOfFiles(path)
   }
 
-  val img = ImageIO.read(new File("photo.jpg"))
-  img.getRGB(1,1).toByte
+
+
+  def b2rgb(b: Byte): (Int,Int,Int,Int) =(b & 0xff000000 >>> 24, b & 0xff0000 >> 16, b & 0xff00 >> 8, b & 0xff)
 
   def run(): Unit = Process("python3 ./src/main/python/ptest.py").!!
 
