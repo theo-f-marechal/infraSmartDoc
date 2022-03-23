@@ -1,5 +1,6 @@
 import sys.process._
 import java.io.File
+import javax.imageio.ImageIO
 
 object Image{
 
@@ -14,8 +15,10 @@ object Image{
 
   def fromFolder(path: String): Unit = {
     val files = getListOfFiles(path)
-    files.map(path => )
   }
+
+  val img = ImageIO.read(new File("photo.jpg"))
+  img.getRGB(1,1).toByte
 
   def run(): Unit = Process("python3 ./src/main/python/ptest.py").!!
 

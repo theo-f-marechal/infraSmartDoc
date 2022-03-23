@@ -19,3 +19,6 @@ libraryDependencies += "org.apache.spark" %% "spark-sql" % "3.2.1" % "provided"
 
 // https://mvnrepository.com/artifact/org.apache.spark/spark-sql-kafka-0-10
 libraryDependencies += "org.apache.spark" %% "spark-sql-kafka-0-10" % "3.2.1" % Test
+
+// https://mvnrepository.com/artifact/org.apache.spark/spark-mllib
+libraryDependencies += "org.apache.spark" %% "spark-mllib" % "3.2.1" % "provided"
