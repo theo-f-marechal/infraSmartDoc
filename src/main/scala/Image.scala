@@ -36,6 +36,6 @@ object Image{
     imgHeight.toList
   }
 
-  def b2rgb(b: Int): (Int,Int,Int,Int) = (b & 0xff000000 >>> 24, b & 0xff0000 >> 16, b & 0xff00 >> 8, b & 0xff)
+  def b2rgb(b: Int): (Int,Int,Int,Int) = ((b & 0xff000000) >>> 24, (b & 0xff0000) >> 16, (b & 0xff00) >> 8, b & 0xff)
 
 }
