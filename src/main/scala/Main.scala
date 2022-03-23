@@ -4,7 +4,7 @@ import Image.imageToBytes
 
 object Main{
   def main(args: Array[String]): Unit = {
-    val img = ImageIO.read(new File("images/padoru.jpeg"))
+    println(Image.fromFolderToByte("images/"))
     kafkaProducer.sendReport("test",1,"lol")
     println("main")
     kafkaConsumer.kafkaConsumer()
