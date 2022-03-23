@@ -14,9 +14,10 @@ object Image{
     }
   }
 
-  def fromFolderToByte(path: String): List[List[List[(Int,Int,Int,Int)]]] = {
+  def fromFolderToByte(path: String): Unit = {
     val files = getListOfFiles(path)
-    files.map( file => imageToBytes(ImageIO.read(file)))
+    files.foreach(file =>
+      kafkaProducer.sendReport("test",1, message=imageToBytes(ImageIO.read(file)).toString()))
   }
 
   def imageToBytes(img : BufferedImage): List[List[(Int,Int,Int,Int)]] = {

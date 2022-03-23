@@ -3,11 +3,6 @@ import java.util.Properties
 
 object kafkaProducer{
 
-  /**
-   * Connect to the Kafka stream and send a message
-   * @param key the key of the message
-   * @param message the message to be sent
-   */
   def sendReport(topicarg : String = "images", key : Int, message : String): Unit = {
     val topic: String = topicarg
     val brokers: String = "localhost:9092"

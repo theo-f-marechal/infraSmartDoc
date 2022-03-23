@@ -10,10 +10,6 @@ class kafkaConsumer(val topic: String) extends Logging {
   val consumer = new KafkaConsumer[String, String](props)
 
 
-  /**
-   * Create a consumer with a parameter configuration defined by default
-   * @return connection properties
-   */
   def createConsumerConfig(): Properties = {
     val props = new Properties()
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
@@ -26,10 +22,6 @@ class kafkaConsumer(val topic: String) extends Logging {
     props
   }
 
-  /**
-   * Function made to intercept alerts deemed to be urgent based on riots or citizen peacescores and create popup with a alert message
-   * @param iterator a iterator that contains the record of the consumer
-   */
   def run_iterateIterator(iterator: Iterator[ConsumerRecord[String, String]]): Unit ={
     if (iterator.hasNext) {
       val report = iterator.next().value()
@@ -49,16 +41,8 @@ class kafkaConsumer(val topic: String) extends Logging {
 }
 
 object kafkaConsumer {
-
-  def main(args: Array[String]): Unit = {
-    kafkaConsumer()
-  }
-
-  /**
-   * Used to launch the main function "run" of the component_2
-   */
   def kafkaConsumer(): Unit = {
     val streamReader = new kafkaConsumer( "test")
-    streamReader.run
+    streamReader.run()
   }
 }
