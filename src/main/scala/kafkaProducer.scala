@@ -5,7 +5,7 @@ object kafkaProducer{
 
   def sendReport(topicarg : String = "images", key : Int, message : String): Unit = {
     val topic: String = topicarg
-    val brokers: String = "localhost:9092"
+    val brokers: String = "localhost:29092"
     val props = new Properties()
     props.put("bootstrap.servers", brokers)
     props.put("client.id", "producer")

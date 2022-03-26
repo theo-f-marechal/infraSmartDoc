@@ -52,7 +52,7 @@ class kafkaConsumer(val topic: String) extends Logging {
     val df = spark
       .read
       .format("kafka")
-      .option("kafka.bootstrap.servers", "localhost:9092")
+      .option("kafka.bootstrap.servers", "localhost:29092")
       .option("subscribe", "test")
       .option("startingOffsets", s"""{"test":{"0":$offset_inferior}}""")
       .load()
