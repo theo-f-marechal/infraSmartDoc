@@ -3,13 +3,14 @@ import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord, KafkaC
 import org.apache.spark.sql.SparkSession
 import java.time.Duration
 import java.util.{Collections, Properties}
-//import scala.collection.JavaConverters._
 import scala.jdk.CollectionConverters._
+
 
 class kafkaConsumer(val topic: String) extends Logging {
   val props: Properties = createConsumerConfig()
   val consumer = new KafkaConsumer[String, String](props)
 
+  //consumer stream
 
   def createConsumerConfig(): Properties = {
     val props = new Properties()
@@ -39,6 +40,8 @@ class kafkaConsumer(val topic: String) extends Logging {
     run_iterateIterator(record.iterator)
     run()
   }
+
+  //consumer bash
 
   def readAll(offset_inferior : BigInt): Array[String] = {
     val spark = SparkSession
